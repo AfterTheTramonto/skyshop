@@ -8,7 +8,7 @@ public class SimpleProduct extends Product {
     public SimpleProduct(UUID id, String name, int price) {
         super(id, name);
         if (price <= 0) {
-            throw new IllegalArgumentException("Price  must be greater than 0");
+            throw new IllegalArgumentException("Price must be greater than 0");
         }
         this.price = price;
     }
