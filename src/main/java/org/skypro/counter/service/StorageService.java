@@ -18,12 +18,12 @@ public class StorageService {
     }
 
     private void initTestData() {
-        // Добавляем тестовые продукты
+
         addProduct(new SimpleProduct(UUID.randomUUID(), "Ноутбук Lenovo", 45000));
         addProduct(new DiscountedProduct(UUID.randomUUID(), "Смартфон Samsung", 30000, 15));
         addProduct(new FixPriceProduct(UUID.randomUUID(), "Чехол для телефона"));
 
-        // Добавляем тестовые статьи
+
         addArticle(new Article(UUID.randomUUID(), "Обзор ноутбуков", "Лучшие ноутбуки 2023 года..."));
         addArticle(new Article(UUID.randomUUID(), "Как выбрать смартфон", "Руководство по выбору..."));
     }
@@ -49,5 +49,9 @@ public class StorageService {
         result.addAll(products.values());
         result.addAll(articles.values());
         return result;
+    }
+
+    public Optional<Product> getProductById(UUID id) {
+        return Optional.ofNullable(products.get(id));
     }
 }
