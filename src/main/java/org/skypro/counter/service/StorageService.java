@@ -18,11 +18,9 @@ public class StorageService {
     }
 
     private void initTestData() {
-
         addProduct(new SimpleProduct(UUID.randomUUID(), "Ноутбук Lenovo", 45000));
         addProduct(new DiscountedProduct(UUID.randomUUID(), "Смартфон Samsung", 30000, 15));
         addProduct(new FixPriceProduct(UUID.randomUUID(), "Чехол для телефона"));
-
 
         addArticle(new Article(UUID.randomUUID(), "Обзор ноутбуков", "Лучшие ноутбуки 2023 года..."));
         addArticle(new Article(UUID.randomUUID(), "Как выбрать смартфон", "Руководство по выбору..."));
