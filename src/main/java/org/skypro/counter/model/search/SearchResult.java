@@ -21,7 +21,6 @@ public class SearchResult {
         );
     }
 
-    // Геттеры
     public String getId() {
         return id;
     }
