@@ -10,10 +10,7 @@ import org.skypro.counter.model.product.Product;
 import org.skypro.counter.model.product.SimpleProduct;
 import org.skypro.counter.model.search.SearchResult;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
@@ -46,18 +43,22 @@ class SearchServiceTest {
 
     @Test
     void search_shouldReturnMatchingItems() {
+
         Product product = createTestProduct("Smartphone");
         Article article = createTestArticle("Laptop Review", "Best laptops of 2023");
-
         when(storageService.getAllSearchables())
                 .thenReturn(Arrays.asList(product, article));
+        Collection<SearchResult> results = searchService.search("laptop");
 
-        List<SearchResult> results = (List<SearchResult>) searchService.search("laptop");
         assertEquals(1, results.size());
-        assertEquals("Laptop Review", results.get(0).getName());
+
+        SearchResult foundResult = results.stream().filter(r -> r.getName().equals("Laptop Review")).findFirst().orElse(null);
+
+        assertNotNull(foundResult);
+        assertEquals("Laptop Review", foundResult.getName());
     }
 
-    private Product createTestProduct(String name) {
+    public Product createTestProduct(String name) {
         return new SimpleProduct(UUID.randomUUID(), name, 1000) {
             @Override
             public int getPrice() {
